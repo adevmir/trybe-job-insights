@@ -7,28 +7,23 @@ def get_max_salary(path: str) -> int:
     max_salary = 0
     for job in jobs:
         if job["max_salary"] != "" and \
-                job["max_salary"] != 'invalid' and \
-                max_salary < int(job['max_salary']):
+                job["max_salary"] != "invalid" and \
+                max_salary < int(job["max_salary"]):
             max_salary = int(job["max_salary"])
     return(int(max_salary))
     raise NotImplementedError
 
 
 def get_min_salary(path: str) -> int:
-    """Get the minimum salary of all jobs
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    int
-        The minimum salary paid out of all job opportunities
-    """
+    jobs = read(path)
+    min_salary = 9999999999999999999
+    for job in jobs:
+        if job["min_salary"] != "" and \
+                job["min_salary"] != 'invalid' and \
+                min_salary > int(job["min_salary"]):
+            min_salary = int(job["min_salary"])
+    print(min_salary)
+    return(int(min_salary))
     raise NotImplementedError
 
 
