@@ -29,22 +29,17 @@ def get_min_salary(path: str) -> int:
 
 def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
     print(job, salary)
-    if not "max_salary" in job \
-            or not "min_salary" in job:
-        raise ValueError
-    max_salary = job["max_salary"]
-    min_salary = job["min_salary"]
-    if type(max_salary) == str:
-        max_salary = int(max_salary)
-    if type(min_salary) == str:
-        min_salary = int(min_salary)
-    if type(salary) == str:
-        salary = int(salary)
-    if type(max_salary) != int \
-            or type(min_salary) != int \
-            or type(salary) != int:
-        raise ValueError
-    if min_salary > max_salary:
+    if "max_salary" in job \
+            and "min_salary" in job \
+            and type(job["max_salary"]) == (int or str) \
+            and type(job["max_salary"]) == (int or str):
+        max_salary = int(job["max_salary"])
+        min_salary = int(job["min_salary"])
+        if type(salary) == str:
+            salary = int(salary)
+        if min_salary > max_salary:
+            raise ValueError
+    else:
         raise ValueError
     return max_salary >= salary >= min_salary
     raise NotImplementedError
